@@ -79,7 +79,9 @@ function activateChapter(index) {
     if (dotIndex === index) dot.setAttribute('aria-current', 'step');
     else dot.removeAttribute('aria-current');
   });
-  if (focusedScene && focusedScene !== scenes[index] && isOpen) dots[index].focus({ preventScroll: true });
+  if (focusedScene && focusedScene !== scenes[index] && isOpen) {
+    scenes[index].querySelector('h1,h2').focus({ preventScroll: true });
+  }
   document.getElementById('chapter-number').textContent = String(index + 1).padStart(2, '0');
   document.getElementById('chapter-label').textContent = chapterNames[index];
   const last = index === scenes.length - 1;

@@ -4,7 +4,7 @@ A mobile-first, cinematic invitation for **28 November 2026, 10:00 AM onwards, I
 
 ## The new experience
 
-This is a separate version in `web-invite\v7`; all existing versions are preserved. The blush-pink and powder-blue design retains a phone-first layout capped at 480 pixels even on a desktop, readable typography, 44–50 pixel touch targets, thumb-reachable navigation, and safe-area spacing.
+This is the Piyush-first edition in `web-invite\v7-piyush-samridhi`; the Samridhi-first edition and all earlier versions are preserved. The blush-pink and powder-blue design retains a phone-first layout capped at 480 pixels even on a desktop, readable typography, 44–50 pixel touch targets, thumb-reachable navigation, and safe-area spacing.
 
 Swipe up or down through five chapters: the beginning, an illustrated glimpse of the couple, the families, the celebration, and the closing invitation. Native momentum scrolling and CSS scroll snapping settle at each chapter while the same garden stays in place. The couple arrives from opposite sides and joins hands; a promise thread draws around them. Names drift apart, family introductions move in from the sides, the date emblem tilts into place, and the closing cards rise. Supporting browsers use CSS scroll-driven scene opacity and transforms; other browsers use a scroll-triggered animation frame. There is no touch or wheel interception, gesture threshold, animation library, or automatic chapter advancement.
 
@@ -16,7 +16,7 @@ The viewport follows the phone's available height. Rotation preserves the curren
 
 The envelope keeps a clean, ribbon-free wax-seal exterior with swaying flowers and drifting petals. Opening it raises a full illustrated letter with the couple's names and timing, sends a few sparkles around it, then dissolves into the invitation. The letter's size and lift are calculated from the available phone height so its wording is not hidden behind the envelope. Butterflies, floating rings and the closing heart's petal shower remain.
 
-Motion and music are enabled without visible toggle buttons, as requested for this version. Music starts directly from the guest's envelope-opening gesture and fades in over 1.8 seconds. Browser autoplay policies still apply: if playback is blocked, an explanatory notice asks the guest to tap the invitation, and playback is retried on that interaction. Device or browser mute settings cannot be overridden. Music pauses while the original film plays or the tab is hidden, then resumes when appropriate.
+Motion and music are enabled without visible toggle buttons, as requested for this version. Music starts directly from the guest's envelope-opening gesture and fades in over 1.8 seconds. Browser autoplay policies still apply: if playback is blocked, an explanatory notice asks the guest to tap the invitation, and playback is retried on that interaction. Device or browser mute settings cannot be overridden. Music pauses while the invitation film plays or the tab is hidden, then resumes when appropriate.
 
 ## Preview
 
@@ -37,12 +37,12 @@ All asset links are relative, so repository subpaths work. There are no API keys
 - Keyboard-accessible, animated wax-seal envelope; replay from the footer.
 - Light pink, powder blue, muted rose, and pearl tones throughout the envelope, text, flowers, buttons, video dialog, and original local illustrations.
 - Five touch-snapped chapters, layered choreography, an illustrated reunion, a ceremony shortcut, native keyboard/touch scrolling, and a live progress line.
-- Responsive layouts, safe-area support, keyboard-accessible chapter navigation, and printable details.
+- Responsive layouts, safe-area support, keyboard-accessible chapter navigation, and printable details. Chapter changes move outgoing content focus to the new chapter heading rather than a navigation dot. Keyboard focus highlights the small navigation bar without outlining its full touch target.
 - Countdown to **10:00 AM on 28 November 2026 in India Standard Time**.
 - “Add to calendar” opens a mobile bottom sheet. Google Calendar and Outlook links prefill the ceremony start time for confirmation. Apple Calendar uses a normal calendar-file link, with a separate download option.
 - Directions using the supplied Google Maps link.
-- Original invitation video in an accessible modal with native playback controls.
-- Automatic music extracted from the supplied video, started by opening the envelope, with a gentle fade-in and no music or motion buttons.
+- The supplied **Piyush_Samridhi_Friends.mp4** film, unchanged, in an accessible modal with native playback controls. It is 26 seconds long, is published as `assets/invitation.mp4`, and has a matching preview image extracted from the same film.
+- Existing background music from the initial invitation, started by opening the envelope, with a gentle fade-in and no music or motion buttons. Replacing the film does not replace this music.
 - A downloadable illustrated keepsake. No sharing or clipboard controls.
 
 ## Personalize
@@ -63,6 +63,6 @@ The ceremony starts at **10:00 AM IST on 28 November 2026**. No end time was sup
 
 Motion uses CSS animations, one sticky viewport inside a native scrolling region, and a scroll-triggered `requestAnimationFrame` for navigation state and scenery. CSS scroll timelines handle scene transitions where supported; the JavaScript fallback uses only opacity and transforms. No story rendering continues when scrolling stops. Short-lived JavaScript animation is also used for the music fade-in. Hidden cinematic chapters are inert and excluded from the accessibility tree; all chapters are readable in the overflow fallback. Animation pauses when the browser tab is hidden. Motion remains enabled without toggles, as in v3. With JavaScript disabled or when printing, the invitation falls back to normal document flow.
 
-The stylesheets and script use the `illustrated-7` version query to avoid reusing previous cached assets. Upload the contents of **v7**, not the parent folder containing all versions.
+The stylesheets and script use version queries to avoid reusing previous cached assets. The updated script and illustrated stylesheet use `nav-focus-7` for the navigation focus fix. Film and poster links use `friends-20261018` so browsers request the replacement media instead of a previously cached clip. When updating an existing deployment, upload `index.html`, `assets/invitation.mp4`, and `assets/video-poster.jpg` together. Upload the contents of **v7-piyush-samridhi**, not the parent folder containing all versions.
 
 No RSVP is collected and no analytics or tracking is included. Before publishing, confirm the date, venue, and spelling of all family names, and ensure you have permission to distribute the supplied video's imagery and music.

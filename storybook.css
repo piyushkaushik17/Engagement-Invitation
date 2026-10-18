@@ -11,6 +11,8 @@
 .chapter-dots>button{width:44px;height:48px}
 .chapter-dots>button>span{width:21px;height:3px;border-radius:3px}
 .chapter-dots>button[aria-current=step]>span{transform:none;box-shadow:none;background:linear-gradient(90deg,#a86c8c,#91b2d0)}
+.chapter-dots>button:focus-visible{outline:none}
+.chapter-dots>button:focus-visible>span{outline:2px solid var(--gold);outline-offset:4px}
 .next-chapter{grid-column:2;width:48px;min-height:48px;min-width:48px;padding:0;gap:0;border:1px solid #baa3bd55;border-radius:50%;background:#fff9fc66}
 #next-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .next-chapter .scroll-arrow{font-size:24px}
