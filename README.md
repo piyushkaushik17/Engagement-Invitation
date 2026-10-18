@@ -14,7 +14,7 @@ Tap the couple to replay their reunion. Both full names use the same centered, s
 
 The viewport follows the phone's available height. Rotation preserves the current chapter. Landscape, enlarged text, or content that cannot fit gets an unclipped reading layout instead of shrinking text or hiding details. Pinch zoom is not disabled.
 
-The envelope floats with a glowing seal, swaying flowers and drifting petals. Opening it unties a pearl-like ribbon, raises a full illustrated letter with the couple's names and timing, sends a few sparkles around it, then dissolves into the invitation. The letter's size and lift are calculated from the available phone height so its wording is not hidden behind the envelope. Butterflies, floating rings and the closing heart's petal shower remain.
+The envelope keeps a clean, ribbon-free wax-seal exterior with swaying flowers and drifting petals. Opening it raises a full illustrated letter with the couple's names and timing, sends a few sparkles around it, then dissolves into the invitation. The letter's size and lift are calculated from the available phone height so its wording is not hidden behind the envelope. Butterflies, floating rings and the closing heart's petal shower remain.
 
 Motion and music are enabled without visible toggle buttons, as requested for this version. Music starts directly from the guest's envelope-opening gesture and fades in over 1.8 seconds. Browser autoplay policies still apply: if playback is blocked, an explanatory notice asks the guest to tap the invitation, and playback is retried on that interaction. Device or browser mute settings cannot be overridden. Music pauses while the original film plays or the tab is hidden, then resumes when appropriate.
 
