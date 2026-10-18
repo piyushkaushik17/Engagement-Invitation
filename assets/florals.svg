@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 850" fill="none">
+  <defs>
+    <radialGradient id="petal"><stop stop-color="#d9b8ac"/><stop offset=".6" stop-color="#f4e4d6"/><stop offset="1" stop-color="#fff9ed"/></radialGradient>
+    <radialGradient id="blush"><stop stop-color="#ba8c84"/><stop offset=".52" stop-color="#e5c7ba"/><stop offset="1" stop-color="#f4e8d9"/></radialGradient>
+    <linearGradient id="leaf"><stop stop-color="#a2a58b"/><stop offset="1" stop-color="#d4d1b1"/></linearGradient>
+    <g id="rose">
+      <path d="M0-43C17-55 28-35 37-29C57-27 52-8 48 5C54 24 35 34 24 36C14 54-6 49-16 43C-37 48-43 29-42 15C-57-1-43-18-32-24C-29-45-10-48 0-43Z" fill="url(#petal)" stroke="#c5a991" stroke-width=".65"/>
+      <path d="M-10-32C10-43 28-28 26-17C44-12 38 9 27 14C29 34 8 37-3 28C-21 40-37 21-28 8C-43-9-27-32-10-32Z" fill="url(#petal)" stroke="#d0b6a0" stroke-width="1"/>
+      <path d="M0-24C17-30 26-12 17-2C32 15 12 29 0 19C-17 29-30 10-17-2C-25-16-14-26 0-24Z" fill="url(#blush)" stroke="#c6a48f" stroke-width=".8"/>
+      <path d="M-8-12C5-20 18-9 11 1C16 12 0 17-7 9C-20 8-16-6-8-12Z" fill="#d5ad9e" stroke="#b88e80" stroke-width=".8"/>
+      <path d="M-5-6Q7-11 7 1Q-1 9-5-2Q1-7 4 0" stroke="#a97f73" stroke-width="1.2"/>
+      <path d="M-35 12Q-24 28-9 26M8-34Q25-26 25-12M33 7Q32 25 16 28M-30-16Q-38 0-25 10" stroke="#fff9ed" stroke-width="2" opacity=".8"/>
+    </g>
+    <g id="peony"><use href="#rose"/><use href="#rose" transform="rotate(35) scale(.83)" opacity=".8"/></g>
+    <g id="sprig" stroke="#929779" stroke-width="1.3">
+      <path d="M0 0Q35-75 9-163"/>
+      <path d="M15-43C-16-40-27-60-28-80C-4-78 14-67 15-43ZM22-64C50-56 62-78 66-96C41-96 26-81 22-64ZM22-96C-5-89-20-110-23-129C0-127 18-114 22-96ZM17-122C44-116 54-139 54-156C33-152 21-139 17-122ZM11-149C-9-151-15-174-11-188C5-182 13-166 11-149Z" fill="url(#leaf)"/>
+      <path d="M15-43L-22-74M22-64L59-90M22-96L-17-123M17-122L48-150" opacity=".5"/>
+    </g>
+    <g id="bud"><path d="M0 0Q14-49-9-80M6-31Q37-42 39-70M4-50Q-24-56-28-88" stroke="#aaa387"/><ellipse cx="-9" cy="-81" rx="8" ry="12" fill="#f4e9d9" stroke="#c6b69c"/><ellipse cx="39" cy="-72" rx="7" ry="11" fill="#eee0ce" stroke="#c6b69c"/><ellipse cx="-29" cy="-88" rx="6" ry="10" fill="#fcf3e5" stroke="#c6b69c"/></g>
+    <g id="cluster">
+      <use href="#sprig" transform="translate(50 155) rotate(-65) scale(1.2)"/>
+      <use href="#sprig" transform="translate(60 140) rotate(38) scale(1.3)"/>
+      <use href="#sprig" transform="translate(63 200) rotate(-16)"/>
+      <use href="#sprig" transform="translate(80 208) rotate(110) scale(.9)"/>
+      <use href="#sprig" transform="translate(24 102) rotate(-112) scale(.85)"/>
+      <use href="#bud" transform="translate(125 125) rotate(65)"/>
+      <use href="#bud" transform="translate(15 160) rotate(-45)"/>
+      <use href="#peony" transform="translate(65 103) rotate(-17) scale(1.2)"/>
+      <use href="#rose" transform="translate(4 151) rotate(35) scale(.8)"/>
+      <use href="#rose" transform="translate(112 163) rotate(60) scale(.95)"/>
+      <use href="#rose" transform="translate(52 205) rotate(17) scale(.65)"/>
+      <use href="#peony" transform="translate(131 64) rotate(42) scale(.7)"/>
+      <use href="#rose" transform="translate(4 57) scale(.6)"/>
+    </g>
+  </defs>
+  <g opacity=".92"><use href="#cluster" transform="translate(78 60) rotate(8)"/><use href="#cluster" transform="translate(1022 60) scale(-1 1) rotate(8)"/></g>
+  <g opacity=".8"><use href="#sprig" transform="translate(150 328) rotate(-7) scale(.78)"/><use href="#sprig" transform="translate(950 328) scale(-.78 .78) rotate(-7)"/><use href="#bud" transform="translate(128 393) rotate(-4) scale(.75)"/><use href="#bud" transform="translate(972 393) scale(-.75 .75) rotate(-4)"/></g>
+  <g stroke="#b69d72" stroke-width=".85" opacity=".5"><path d="M205 129Q550-80 895 129"/><path d="M218 141Q550-59 882 141"/><path d="M173 350Q123 542 179 745M927 350Q977 542 921 745"/></g>
+  <g fill="#b5a17b" opacity=".7"><circle cx="550" cy="34" r="2"/><path d="M550 42L553 49L550 56L547 49Z"/><circle cx="179" cy="745" r="2"/><circle cx="921" cy="745" r="2"/></g>
+</svg>
