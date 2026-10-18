@@ -176,7 +176,7 @@ svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke
 .is-entering .world{animation:world-arrive 2s var(--ease) both}
 .is-entering .site-header,.is-entering .chapter-navigation{animation:word-arrive 1.5s var(--ease) .4s both}
 .motion-paused *,.motion-paused *::after{animation-play-state:paused!important}
-html:not(.js) .site-header,html:not(.js) .chapter-navigation,html:not(.js) [data-chapter],html:not(.js) [data-calendar],html:not(.js) #watch-film,html:not(.js) #share-invitation,html:not(.js) #replay-envelope,html:not(.js) #countdown-section,html:not(.js) .love-mark{display:none}
+html:not(.js) .site-header,html:not(.js) .chapter-navigation,html:not(.js) [data-chapter],html:not(.js) [data-calendar],html:not(.js) #watch-film,html:not(.js) #replay-envelope,html:not(.js) #countdown-section,html:not(.js) .love-mark{display:none}
 .envelope-bouquet{position:absolute;width:min(26vw,250px);height:55%;object-fit:contain;bottom:0;pointer-events:none;opacity:.62;z-index:-1;transform-origin:bottom center;animation:bouquet-sway 7s ease-in-out infinite alternate}
 .bouquet-left{left:-2%;rotate:-12deg}.bouquet-right{right:-2%;scale:-1 1;rotate:12deg;animation-delay:-3s}
 .envelope-petals{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}

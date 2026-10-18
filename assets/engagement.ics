@@ -6,12 +6,11 @@ METHOD:PUBLISH
 BEGIN:VEVENT
 UID:piyush-samridhi-engagement-20261128@invitation.local
 DTSTAMP:20261018T000000Z
-DTSTART;VALUE=DATE:20261128
-DTEND;VALUE=DATE:20261129
+DTSTART:20261128T043000Z
 SUMMARY:Piyush & Samridhi - Engagement Ceremony
 LOCATION:The Cove\, Sector 5\, Panchkula\, Haryana\, India
 DESCRIPTION:Join the Kaushik and Sharma families for our engagement.\n
- Ceremony time will be shared by the families.\n
+ 10:00 AM onwards\, India Standard Time. End time is not specified.\n
  Directions: https://maps.app.goo.gl/BYGhpzSYVJ5wRxBEA
 URL:https://maps.app.goo.gl/BYGhpzSYVJ5wRxBEA
 TRANSP:TRANSPARENT

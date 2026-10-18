@@ -8,7 +8,7 @@ body{background:linear-gradient(135deg,#f5e5ee,#e1edf8);font-size:14px}
 .js .story-scroll{position:absolute;inset:0;overflow-x:hidden;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior-y:contain;scrollbar-width:none;scroll-timeline:--chapters block;-webkit-overflow-scrolling:touch}
 .story-scroll::-webkit-scrollbar{display:none}
 .story-scroll:focus-visible{outline:2px solid var(--gold);outline-offset:-3px}
-.js .story-track{position:relative;height:calc(var(--page-height,100svh) * 4)}
+.js .story-track{position:relative;height:calc(var(--page-height,100svh) * var(--chapter-count,5))}
 .js .story-stage{position:sticky;top:0;height:var(--page-height,100svh);overflow:hidden;contain:layout paint}
 .story-stop{display:none}
 .js .story-stop{display:block;position:absolute;top:calc(var(--stop) * var(--page-height,100svh));width:1px;height:1px;scroll-snap-align:start;scroll-snap-stop:always;pointer-events:none}
@@ -108,13 +108,15 @@ h2{font-size:clamp(46px,12vw,58px);line-height:1.03;letter-spacing:-1.5px}
 .js.is-open[data-motion=on] .scene.is-active .couple-names>span:last-child{animation:none}
 .scene{will-change:transform,opacity}
 .js.has-scroll-timeline:not(.reader-mode) .scene{animation:chapter-one linear both;animation-timeline:--chapters}
-.js.has-scroll-timeline:not(.reader-mode) #families{animation-name:chapter-two}
-.js.has-scroll-timeline:not(.reader-mode) #celebration{animation-name:chapter-three}
-.js.has-scroll-timeline:not(.reader-mode) #with-love{animation-name:chapter-four}
-@keyframes chapter-one{0%{opacity:1;transform:translate3d(0,0,0) scale(1)}33.333%,100%{opacity:0;transform:translate3d(0,-18svh,0) scale(.98)}}
-@keyframes chapter-two{0%{opacity:0;transform:translate3d(0,18svh,0) scale(.98)}33.333%{opacity:1;transform:translate3d(0,0,0) scale(1)}66.667%,100%{opacity:0;transform:translate3d(0,-18svh,0) scale(.98)}}
-@keyframes chapter-three{0%,33.333%{opacity:0;transform:translate3d(0,18svh,0) scale(.98)}66.667%{opacity:1;transform:translate3d(0,0,0) scale(1)}100%{opacity:0;transform:translate3d(0,-18svh,0) scale(.98)}}
-@keyframes chapter-four{0%,66.667%{opacity:0;transform:translate3d(0,18svh,0) scale(.98)}100%{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+.js.has-scroll-timeline:not(.reader-mode) #together{animation-name:chapter-two}
+.js.has-scroll-timeline:not(.reader-mode) #families{animation-name:chapter-three}
+.js.has-scroll-timeline:not(.reader-mode) #celebration{animation-name:chapter-four}
+.js.has-scroll-timeline:not(.reader-mode) #with-love{animation-name:chapter-five}
+@keyframes chapter-one{0%{opacity:1;transform:translate3d(0,0,0) scale(1)}25%,100%{opacity:0;transform:translate3d(0,-18svh,0) scale(.98)}}
+@keyframes chapter-two{0%{opacity:0;transform:translate3d(0,18svh,0) scale(.98)}25%{opacity:1;transform:translate3d(0,0,0) scale(1)}50%,100%{opacity:0;transform:translate3d(0,-18svh,0) scale(.98)}}
+@keyframes chapter-three{0%,25%{opacity:0;transform:translate3d(0,18svh,0) scale(.98)}50%{opacity:1;transform:translate3d(0,0,0) scale(1)}75%,100%{opacity:0;transform:translate3d(0,-18svh,0) scale(.98)}}
+@keyframes chapter-four{0%,50%{opacity:0;transform:translate3d(0,18svh,0) scale(.98)}75%{opacity:1;transform:translate3d(0,0,0) scale(1)}100%{opacity:0;transform:translate3d(0,-18svh,0) scale(.98)}}
+@keyframes chapter-five{0%,75%{opacity:0;transform:translate3d(0,18svh,0) scale(.98)}100%{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 .calendar-sheet{position:fixed;inset:auto 0 0;width:100%;max-width:480px;max-height:calc(100dvh - 16px);margin:0 auto;padding:10px 22px calc(20px + env(safe-area-inset-bottom));border:1px solid #d8bfd3;border-bottom:0;border-radius:28px 28px 0 0;background:linear-gradient(150deg,#fff9fd,#edf5fd);color:var(--ink);overflow-y:auto;overscroll-behavior:contain}
 .calendar-sheet::backdrop{background:#55496388;backdrop-filter:blur(5px)}
 .calendar-sheet[open]{animation:sheet-arrive .35s var(--ease)}

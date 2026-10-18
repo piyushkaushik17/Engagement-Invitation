@@ -3,8 +3,9 @@
 const EVENT = Object.freeze({
   title: 'Piyush & Samridhi — Engagement Ceremony',
   startDate: '20261128',
-  endDate: '20261129',
-  dayStart: '2026-11-28T00:00:00+05:30',
+  startsAt: '2026-11-28T10:00:00+05:30',
+  calendarStart: '20261128T043000Z',
+  timing: '10:00 AM onwards, India Standard Time',
   dayEnd: '2026-11-29T00:00:00+05:30',
   venue: 'The Cove, Sector 5, Panchkula, Haryana, India',
   map: 'https://maps.app.goo.gl/BYGhpzSYVJ5wRxBEA'
@@ -19,7 +20,7 @@ const scroller = document.getElementById('story-scroll');
 const stage = document.getElementById('story-stage');
 const scenes = [...document.querySelectorAll('[data-scene]')];
 const dots = [...document.querySelectorAll('.chapter-dots [data-chapter]')];
-const chapterNames = ['The beginning', 'Our families', 'The celebration', 'With love'];
+const chapterNames = ['The beginning', 'A glimpse of us', 'Our families', 'The celebration', 'With love'];
 const music = document.getElementById('background-music');
 const film = document.getElementById('film-dialog');
 const video = document.getElementById('invitation-video');
@@ -45,6 +46,7 @@ let musicAttempt = null;
 let musicNoticeShown = false;
 let volumeFrame = 0;
 let showerTimer;
+let reunionTimer;
 
 document.body.classList.add('locked');
 invitation.inert = true;
@@ -94,6 +96,8 @@ function paintStory(position) {
     const distance = sceneIndex - position;
     const progress = clamp(Math.abs(distance), 0, 1);
     const fade = 1 - progress * progress * (3 - 2 * progress);
+    scene.style.setProperty('--scene-distance', String(clamp(distance, -1, 1)));
+    scene.style.setProperty('--scene-away', String(progress));
     if (!nativeTimeline || readerMode) {
       scene.style.setProperty('--scene-opacity', readerMode ? '1' : fade.toFixed(4));
       scene.style.setProperty('--scene-y', readerMode ? '0px' : `${(distance * chapterStep * 0.18).toFixed(2)}px`);
@@ -104,6 +108,7 @@ function paintStory(position) {
   stage.style.setProperty('--world-shift', motionEnabled ? `${position * -29}px` : '0px');
   stage.style.setProperty('--world-turn', motionEnabled ? `${position * 65}deg` : '0deg');
   stage.style.setProperty('--garden-scale', motionEnabled ? String(1 + position * 0.055) : '1');
+  stage.style.setProperty('--reunion', String(clamp(position, 0, 1)));
   if (focusChapter !== null && Math.abs(position - focusChapter) < 0.015) {
     scenes[focusChapter].querySelector('h1,h2').focus({ preventScroll: true });
     focusChapter = null;
@@ -142,6 +147,7 @@ function measureStory() {
   const previousChapter = Math.max(0, activeChapter);
   chapterStep = height;
   story.style.setProperty('--page-height', `${height}px`);
+  story.style.setProperty('--chapter-count', String(scenes.length));
   const needsReader = height < 500 || scenes.some(scene => {
     const style = getComputedStyle(scene);
     const available = height - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
@@ -217,9 +223,16 @@ openButton.addEventListener('click', () => {
   opening = true;
   musicWanted = true;
   startMusic();
+  const envelopeBounds = openButton.getBoundingClientRect();
+  const letterHeight = Math.min(335, Math.max(190, Math.round(window.innerHeight * 0.4)));
+  envelopeScreen.style.setProperty('--letter-height', `${letterHeight}px`);
+  envelopeScreen.style.setProperty('--letter-art-height', `${clamp(letterHeight - 143, 50, 160)}px`);
+  envelopeScreen.style.setProperty('--letter-lift', `${openButton.offsetHeight + 12}px`);
+  envelopeScreen.style.setProperty('--opening-drop', `${Math.max(0, letterHeight + 28 - envelopeBounds.top)}px`);
+  envelopeScreen.classList.toggle('compact-letter', letterHeight < 215);
   openButton.disabled = true;
   envelopeScreen.classList.add('opening');
-  openingTimer = setTimeout(revealInvitation, motionEnabled ? 1050 : 0);
+  openingTimer = setTimeout(revealInvitation, motionEnabled ? 2300 : 0);
 });
 document.getElementById('replay-envelope').addEventListener('click', () => {
   music.pause();
@@ -227,6 +240,8 @@ document.getElementById('replay-envelope').addEventListener('click', () => {
   musicPending = false;
   cancelAnimationFrame(volumeFrame);
   clearTimeout(showerTimer);
+  clearTimeout(reunionTimer);
+  document.getElementById('replay-reunion').classList.remove('reuniting');
   document.getElementById('petal-shower').replaceChildren();
   clearTimeout(openingTimer);
   clearTimeout(departureTimer);
@@ -248,7 +263,7 @@ document.getElementById('replay-envelope').addEventListener('click', () => {
 });
 
 function updateCountdown(now = Date.now()) {
-  const start = new Date(EVENT.dayStart).getTime();
+  const start = new Date(EVENT.startsAt).getTime();
   const end = new Date(EVENT.dayEnd).getTime();
   const remaining = Math.max(0, Math.floor((start - now) / 1000));
   const values = {
@@ -260,8 +275,8 @@ function updateCountdown(now = Date.now()) {
   Object.entries(values).forEach(([key, value]) => {
     document.getElementById(key).textContent = String(value).padStart(2, '0');
   });
-  document.getElementById('countdown-caption').textContent = now < start ? 'Until our engagement day'
-    : now < end ? "Today's the day. Let's celebrate!" : 'Our forever has begun. Thank you for your love.';
+  document.getElementById('countdown-caption').textContent = now < start ? 'Until our celebration begins'
+    : now < end ? "Today's the day. Join us from 10:00 AM!" : 'Our forever has begun. Thank you for your love.';
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
@@ -289,9 +304,9 @@ function calendarFile() {
     'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Piyush and Samridhi//Engagement Invitation//EN',
     'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
     'UID:piyush-samridhi-engagement-20261128@invitation.local',
-    `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${EVENT.startDate}`, `DTEND;VALUE=DATE:${EVENT.endDate}`,
+    `DTSTAMP:${stamp}`, `DTSTART:${EVENT.calendarStart}`,
     `SUMMARY:${escapeCalendar(EVENT.title)}`, `LOCATION:${escapeCalendar(EVENT.venue)}`,
-    `DESCRIPTION:${escapeCalendar(`Together with the Kaushik & Sharma families, join us to celebrate our engagement. Ceremony time will be shared by the families.\nDirections: ${EVENT.map}`)}`,
+    `DESCRIPTION:${escapeCalendar(`Together with the Kaushik & Sharma families, join us to celebrate our engagement. ${EVENT.timing}. End time is not specified.\nDirections: ${EVENT.map}`)}`,
     `URL:${EVENT.map}`, 'TRANSP:TRANSPARENT', 'END:VEVENT', 'END:VCALENDAR'
   ];
   // Calendar content lines are folded at 75 UTF-8 octets, including continuation spaces.
@@ -308,18 +323,17 @@ function calendarFile() {
     return folded;
   }).join('\r\n') + '\r\n';
 }
-const calendarDescription = `Together with the Kaushik & Sharma families, join us to celebrate our engagement. Ceremony time will be shared by the families.\nDirections: ${EVENT.map}`;
+const calendarDescription = `Together with the Kaushik & Sharma families, join us to celebrate our engagement. ${EVENT.timing}. End time is not specified; adjust the duration if needed.\nDirections: ${EVENT.map}`;
 const googleCalendar = new URL('https://calendar.google.com/calendar/render');
 googleCalendar.search = new URLSearchParams({
-  action: 'TEMPLATE', text: EVENT.title, dates: `${EVENT.startDate}/${EVENT.endDate}`,
+  action: 'TEMPLATE', text: EVENT.title, dates: `${EVENT.calendarStart}/${EVENT.calendarStart}`,
   ctz: 'Asia/Kolkata', location: EVENT.venue, details: calendarDescription
 }).toString();
 document.getElementById('google-calendar').href = googleCalendar.href;
 const outlookCalendar = new URL('https://outlook.live.com/calendar/0/deeplink/compose');
-const localCalendarDate = date => `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}T00:00:00`;
 outlookCalendar.search = new URLSearchParams({
   path: '/calendar/action/compose', rru: 'addevent', subject: EVENT.title,
-  startdt: localCalendarDate(EVENT.startDate), enddt: localCalendarDate(EVENT.endDate), allday: 'true',
+  startdt: EVENT.startsAt, allday: 'false',
   location: EVENT.venue, body: calendarDescription
 }).toString();
 document.getElementById('outlook-calendar').href = outlookCalendar.href;
@@ -344,7 +358,7 @@ document.getElementById('download-calendar').addEventListener('click', () => {
   link.click();
   link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 30000);
-  notify('Calendar file ready. Open it to save the date; ceremony time will follow.');
+  notify('Calendar file ready: 28 November, 10:00 AM IST. Confirm the event in your calendar.');
 });
 
 function fadeMusicIn() {
@@ -424,24 +438,12 @@ document.getElementById('shower-petals').addEventListener('click', () => {
   notify('A little shower of love, just for you.');
 });
 
-document.getElementById('share-invitation').addEventListener('click', async () => {
-  const url = new URL(location.href);
-  url.hash = '';
-  url.search = '';
-  const text = "You're invited to Piyush & Samridhi's engagement! 28 November 2026 · The Cove, Panchkula.";
-  if (!['http:', 'https:'].includes(url.protocol) || ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)) {
-    notify('Publish this folder on GitHub Pages first to share a public invitation link.');
-    return;
-  }
-  try {
-    if (navigator.share) await navigator.share({ title: EVENT.title, text, url: url.href });
-    else if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(url.href);
-      notify('Invitation link copied. Send a little love!');
-    } else notify('Copy the invitation link from your browser address bar to share it.');
-  } catch (error) {
-    if (error.name === 'AbortError') return;
-    console.error('Sharing the invitation failed:', error);
-    notify('Sharing was unavailable. Copy the link from your browser address bar.');
-  }
+document.getElementById('replay-reunion').addEventListener('click', event => {
+  const portrait = event.currentTarget;
+  clearTimeout(reunionTimer);
+  portrait.classList.remove('reuniting');
+  // Restart only the replay layer, leaving the scroll-linked pose untouched.
+  void portrait.offsetWidth;
+  portrait.classList.add('reuniting');
+  reunionTimer = setTimeout(() => portrait.classList.remove('reuniting'), 1700);
 });
