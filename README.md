@@ -1,62 +1,76 @@
-# Piyush & Samridhi — Mobile invitation · v5
+# Samridhi & Piyush — A cinematic engagement invitation
 
-A mobile-first, cinematic invitation for 28 November 2026 at The Cove, Sector 5, Panchkula. No build step, framework, account, or backend is required.
+**28 November 2026 · The Cove, Sector 5, Panchkula**
 
-## The new experience
+This revision replaces the conventional scrolling page with a full-viewport, animated invitation inspired by the two reference clips.
 
-This is a separate version in `web-invite\v5`; all existing versions are preserved. The blush-pink and powder-blue design is now a phone-first experience, with a single portrait layout capped at 480 pixels even on a desktop. Typography, 44–50 pixel touch targets, thumb-reachable navigation, and safe-area spacing are designed for phones, not a desktop page squeezed down.
+## The experience
 
-Swipe up or down to move between four chapters. Native momentum scrolling and CSS scroll snapping settle at each chapter, while the same garden remains in place and text crossfades through it. Supporting browsers use CSS scroll-driven animations for scene opacity and transforms. Other browsers use a scroll-triggered animation frame with no smoothing delay between the finger and the content. There is no touch or wheel interception, gesture threshold, animation library, or automatic chapter advancement. The “When & where” shortcut opens the ceremony chapter immediately.
+1. A tall, embossed-paper envelope fills the screen. A burgundy wax seal carries the couple's monogram, and a moving sheen catches the raised ornament.
+2. Tapping the seal lifts it and opens four separate paper faces. Warm light leaks through the seams, then expands into gold rays, particles, and a luminous reveal.
+3. Animated champagne silk fills the opening, ripples, and parts from the center.
+4. The couple's names reveal over a moving, photographic palace setting with crystal chandeliers, glimmering dust, and falling petals.
+5. Native scrolling moves between five overlapping invitation scenes in the same pinned viewport: the couple, their families, the engagement date, the venue, and the closing invitation/countdown. The film's framing moves with the scroll. Dots and the next arrow also navigate the scenes.
 
-The viewport follows the phone's available height. Rotation preserves the current chapter. Landscape, enlarged text, or content that cannot fit gets an unclipped reading layout instead of shrinking text or hiding details. Pinch zoom is not disabled.
+The palace backdrop uses locally hosted, looping MP4 films made from a licensed photograph. It is a cinematic photographic treatment, **not a live 3D model**. The silk, particles, and petals are animated with Canvas 2D, and the paper opening uses CSS transforms, light layers, and masks. This keeps the experience available on phones and computers without requiring WebGL or a powerful graphics card.
 
-The closed-envelope page is animated too: the envelope floats, the wax seal glows, floral sprays sway, orbit lines breathe, and pink-and-blue petals drift. Inside, butterflies flutter, rings float, and the scenery moves with scrolling. Tap the heart on the closing chapter for an extra petal shower; this is a local visual interaction, not an RSVP or message.
+The opening lasts about 10 seconds. **Skip opening** bypasses it. **Experience it again** at the end replays the entire sequence. Music is optional and off by default.
 
-Motion and music are enabled without visible toggle buttons, as requested for this version. Music starts directly from the guest's envelope-opening gesture and fades in over 1.8 seconds. Browser autoplay policies still apply: if playback is blocked, an explanatory notice asks the guest to tap the invitation, and playback is retried on that interaction. Device or browser mute settings cannot be overridden. Music pauses while the original film plays or the tab is hidden, then resumes when appropriate.
+For an explicitly animated preview regardless of the computer's reduced-motion setting, open `index.html?motion=on` through the local server, or use the **Motion on** control. `?motion=off` explicitly requests the quiet version. Without either parameter, the guest's device preference is honored.
 
 ## Preview
 
-Open `index.html` directly, or run `python -m http.server 8080` from this folder and visit `http://localhost:8080`. A local preview cannot be shared with guests; publish the folder first.
+Open `index.html` directly. For an HTTP preview:
+
+```powershell
+python -m http.server 8092
+```
+
+Visit `http://localhost:8092/`. Stop the server with Ctrl+C. The preview URL is local to your computer, not a link to send guests.
 
 ## Publish on GitHub Pages
 
-1. Create a GitHub repository. Remember that a public repository exposes the invitation, family names, and video publicly.
-2. Upload **the contents of this folder** to the repository root: `index.html`, `experience.css`, `mobile.css`, `experience.js`, `.nojekyll`, and the entire `assets` folder. Include `assets/engagement.ics` for Apple Calendar. Do not upload only the HTML or place everything inside a second `web-invite` folder.
-3. In the repository, select **Settings → Pages → Build and deployment → Deploy from a branch**.
-4. Select your uploaded branch and **/ (root)**, then save.
-5. When GitHub finishes deployment, use the website URL shown under Pages. It will typically look like `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/`.
+1. Create a GitHub repository. Confirm the families are comfortable publishing their names and event details publicly.
+2. Upload this folder's contents to the repository root, including `index.html`, `cinematic.css`, `cinematic.js`, `cinema-film.js`, `credits.html`, `engagement.ics`, `.nojekyll`, and the **entire `assets` folder**.
+3. Go to **Settings → Pages → Deploy from a branch**. Select your branch and **/ (root)**, then save.
+4. Share the website URL shown by GitHub Pages after deployment completes.
 
-All asset links are relative, so repository subpaths work. There are no API keys or server-side dependencies. Google Fonts is an optional network enhancement; system serif and sans-serif fonts work when offline. The map opens Google Maps only when a guest requests directions.
+No build, dependency installation, API key, backend, CDN, or third-party runtime request is needed. All paths are relative and work under a GitHub repository subpath. Keep the credit page and media-license attribution when publishing.
 
-## Features
+The older `invitation.css` and `invitation.js` are not referenced by the new `index.html`; the current files have distinct filenames and versioned URLs so they do not reuse the old experience from the browser cache.
 
-- Keyboard-accessible, animated wax-seal envelope; replay from the footer.
-- Light pink, powder blue, muted rose, and pearl tones throughout the envelope, text, flowers, buttons, video dialog, and original local illustrations.
-- Four touch-snapped chapters, a ceremony shortcut, direct chapter navigation, native keyboard/touch scrolling, and a live progress line.
-- Responsive layouts, safe-area support, keyboard-accessible chapter navigation, and printable details.
-- Countdown to **the start of 28 November in India Standard Time**, not an assumed ceremony hour.
-- “Add to calendar” opens a mobile bottom sheet instead of immediately downloading a file. Google Calendar and Outlook links open prefilled all-day events for confirmation. Apple Calendar uses a normal calendar-file link, and a separate download option remains available.
-- Directions using the supplied Google Maps link.
-- Original invitation video in an accessible modal with native playback controls.
-- Automatic music extracted from the supplied video, started by opening the envelope, with a gentle fade-in and no music or motion buttons.
-- Native device sharing or clipboard copying after publication. Personalized recipient names are removed from shared links.
+## Event details
 
-## Personalize
+- **Bride:** Samridhi Sharma, daughter of Rajneesh Sharma & Poonam Sharma.
+- **Groom:** Piyush Kaushik, son of Satish Kaushik & Urmila Kaushik.
+- **Date:** Saturday, 28 November 2026.
+- **Venue:** The Cove, Sector 5, Panchkula, Haryana, India.
+- **Directions:** The exact Google Maps link supplied by the families.
 
-Use `?to=Ananya%20%26%20Family` after the published URL to address the envelope to a guest. Names are rendered as text, never HTML. This personalization is not private access control.
+No ceremony time was supplied. The page explicitly says the families will share it. The calendar download is an all-day event, with 29 November as its exclusive end date. The countdown is to the start of 28 November in India Standard Time, not to an invented ceremony hour. It becomes an engagement-day message on the date and a thank-you afterward.
 
-Edit names and invitation wording in `index.html`. Event dates and calendar content are in the `EVENT` object at the top of `experience.js`. If a date or venue changes, update both HTML and JavaScript, including the venue link. Colors, typography, and responsive breakpoints are in `experience.css`. The botanical and garden illustrations are original local SVG assets.
+Personalize the envelope using `?to=Ananya%20%26%20Family` after the live URL. This is a greeting, not private access control. Sharing removes the greeting and any section hash.
 
-Mobile layout and scroll-timeline rules are in `mobile.css`, after the shared decorative stylesheet. Update `assets/engagement.ics` as well if the event changes; it is the static Apple Calendar import. Keep its all-day end date exclusive and its line endings CRLF.
+## Accessibility and playback
 
-## Calendar behavior and limits
+- Native touch/keyboard scrolling, chapter buttons, a skip link, visible focus indicators, and an accessible calendar download.
+- Inactive scenes are inert and excluded from the accessibility tree.
+- Device reduced-motion preferences are honored: the opening is skipped, the film pauses, and the particles and decorative animations stop. A visible **Motion off / Motion on** button lets the guest explicitly choose.
+- Background animation and music pause when the browser tab is hidden.
+- Without JavaScript, the envelope is omitted and the complete invitation remains readable in ordinary document flow.
+- Printing displays all scenes as a readable document, rather than printing a single pinned frame.
+- If a browser blocks the silent film, its local poster remains visible and a playback notice is shown. The invitation details and actions remain usable.
 
-A normal webpage cannot write an event into someone's calendar without their permission. Google Calendar and Outlook open a prefilled editor; the guest must confirm Save and may need to sign in. Their service and the phone determine whether the editor opens in an app or a browser.
+## Artwork and media permissions
 
-Apple does not provide a universal web link for creating a native Calendar event. Its option opens the local `.ics` file without forcing a download, which supported iPhone browsers can hand off for calendar import. Other browsers and in-app browsers may download it or require the guest to open it from Files. No calendar access, OAuth token, backend, or subscription is requested. The event is **all day on 28 November 2026**, not an invented ceremony time.
+The palace photograph is **“Palácio Queluz interior 1.JPG” by Husond**, from Wikimedia Commons, under **CC BY-SA 3.0**. The resized poster and color-graded, cropped camera-loop films are adaptations under the same license. Source, attribution, modification details, and license links are on the linked `credits.html` page.
 
-Motion uses CSS animations, one sticky viewport inside a native scrolling region, and a scroll-triggered `requestAnimationFrame` for navigation state and scenery. CSS scroll timelines handle scene transitions where supported; the JavaScript fallback uses only opacity and transforms. No story rendering continues when scrolling stops. Short-lived JavaScript animation is also used for the music fade-in. Hidden cinematic chapters are inert and excluded from the accessibility tree; all chapters are readable in the overflow fallback. Animation pauses when the browser tab is hidden. Motion remains enabled without toggles, as in v3. With JavaScript disabled or when printing, the invitation falls back to normal document flow.
+The palace is a decorative setting, **not The Cove**. The reference videos are not redistributed or embedded, and none of their footage, names, or music appears in this site.
 
-The stylesheets and script use the `mobile-5` version query to avoid reusing previous cached assets. Upload the contents of **v5**, not the parent folder containing all versions.
+The paper ornament, wax seal, light effects, silk, particles, and music-box pattern are original invitation elements. Fonts are self-hosted under the SIL Open Font Licenses included in `assets/fonts/`.
 
-No RSVP is collected and no analytics or tracking is included. Before publishing, confirm the date, venue, and spelling of all family names, and ensure you have permission to distribute the supplied video's imagery and music.
+## Editing
+
+`index.html` contains the invitation text. `cinematic.css` controls the envelope, lighting, typography, and scene layout. `cinematic.js` controls the opening timeline, scrolling, calendar-related copy, countdown, sharing, motion preference, and music. `cinema-film.js` animates the silk and particles and plays the appropriate portrait or landscape film.
+
+If the date or venue changes, update the HTML, the date constants in `cinematic.js`, and `engagement.ics`. If changing a published file, increment its `v=` query in `index.html` to avoid stale caches.

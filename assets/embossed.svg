@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 1000">
+  <defs>
+    <filter id="emboss" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="-1.2" dy="-1.5" stdDeviation=".55" flood-color="#fff" flood-opacity="1"/><feDropShadow dx="1.2" dy="1.6" stdDeviation=".7" flood-color="#b6afa2" flood-opacity=".7"/></filter>
+    <g id="petals"><path d="M0-32C20-48 35-14 17-6C40 3 27 32 7 20C-1 45-28 31-20 12C-46 10-37-21-16-15C-20-35-8-39 0-32Z"/><path d="M-3-19C12-28 23-6 11 0C27 12 7 25-1 13C-16 27-29 9-14 0C-27-11-10-26-3-19Z"/><circle r="8"/><path d="M-3-5Q10-7 6 3Q-3 10-5 0" fill="none" stroke="#d4cec3" stroke-width="2"/></g>
+    <g id="frond"><path d="M0 0Q54-57 17-139" fill="none" stroke="#e5e0d7" stroke-width="3"/><path d="M18-27Q-4-23-17-44Q8-49 18-27ZM27-49Q52-36 64-64Q37-70 27-49ZM28-75Q1-64-13-92Q15-95 28-75ZM25-99Q49-88 57-118Q33-120 25-99ZM17-126Q-6-117-14-143Q8-147 17-126Z"/><path d="M19-26L-10-40M27-49L57-60M28-75L-6-87M25-99L50-113" stroke="#f7f5ef" fill="none"/></g>
+    <g id="flourish"><path d="M0 0C55-26 103-65 76-97C59-118 30-100 44-82C53-71 70-83 62-88M6-4C-32-41-77-45-86-80C-96-119-39-134-35-101C-32-81-58-78-63-96M15-14Q-3-72 21-112Q42-142 27-167Q56-147 46-120Q32-90 36-59" fill="none" stroke="#e5e0d7" stroke-width="4"/><use href="#frond" transform="translate(8 -10) rotate(-46) scale(.8)"/><use href="#frond" transform="translate(-4 -10) scale(-.75 .75) rotate(-39)"/><use href="#petals" transform="translate(0 -4) scale(.67)"/><use href="#petals" transform="translate(31 -145) scale(.28)"/></g>
+    <g id="crest"><use href="#petals" transform="scale(1.15)"/><use href="#flourish" transform="translate(0 -30) scale(.9)"/><use href="#flourish" transform="translate(0 30) rotate(180) scale(.9)"/><use href="#flourish" transform="translate(-31 0) rotate(-90) scale(.65)"/><use href="#flourish" transform="translate(31 0) rotate(90) scale(.65)"/></g>
+    <pattern id="damask" width="220" height="240" patternUnits="userSpaceOnUse"><g fill="#e9e5dc" filter="url(#emboss)" opacity=".72"><use href="#flourish" transform="translate(110 177) scale(.7)"/><circle cx="0" cy="0" r="4"/><circle cx="220" cy="240" r="4"/></g></pattern>
+  </defs>
+  <path fill="#eeebe3" d="M0 0H700V1000H0Z"/>
+  <path fill="url(#damask)" d="M0 0H700V1000H0Z"/>
+  <g fill="#e8e3d9" filter="url(#emboss)">
+    <use href="#crest" transform="translate(350 135) scale(.92)"/>
+    <use href="#crest" transform="translate(350 865) scale(.92)"/>
+    <use href="#flourish" transform="translate(85 310) rotate(-20) scale(.9)"/>
+    <use href="#flourish" transform="translate(615 310) scale(-.9 .9) rotate(-20)"/>
+    <use href="#flourish" transform="translate(85 690) rotate(200) scale(.9)"/>
+    <use href="#flourish" transform="translate(615 690) scale(-.9 .9) rotate(200)"/>
+  </g>
+  <g stroke="#e8e3d9" fill="none" filter="url(#emboss)"><path d="M19 18H681V982H19Z" stroke-width="3"/><path d="M29 28H671V972H29Z"/><path d="M45 246Q104 500 45 754M655 246Q596 500 655 754" stroke-width="3"/></g>
+</svg>
