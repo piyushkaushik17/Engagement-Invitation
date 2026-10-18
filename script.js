@@ -22,6 +22,27 @@ let opening = false;
 let toastTimeout;
 let musicBeforeFilm = false;
 let revealObserver;
+let sceneObserver;
+let openingTimer;
+let departureTimer;
+let petalTimer;
+let motionFrame = 0;
+let motionTime = 0;
+let motionScroll = 0;
+let parallaxItems = [];
+const revealSelector = [
+  '.intro > .small-flower', '.intro > .eyebrow', '.intro > h2', '.intro > .body-copy',
+  '.families > *', '.celebration-heading > *', '.date-card', '.venue-card',
+  '.countdown-section > *', '.memory-frame > :not(noscript)', '.site-footer > *'
+].join(',');
+const revealItems = [...document.querySelectorAll(revealSelector)];
+revealItems.forEach(item => {
+  item.classList.add('reveal-item');
+  const siblings = [...item.parentElement.children].filter(child => child.matches(revealSelector));
+  item.style.setProperty('--reveal-delay', `${Math.min(siblings.indexOf(item), 4) * 85}ms`);
+});
+document.querySelector('.date-card').style.setProperty('--reveal-x', '-14px');
+document.querySelector('.venue-card').style.setProperty('--reveal-x', '14px');
 
 document.body.classList.add('locked');
 invitation.inert = true;
@@ -37,12 +58,11 @@ function notify(message) {
 }
 
 function revealSections() {
-  const sections = document.querySelectorAll('.reveal');
+  revealObserver?.disconnect();
   if (reducedMotion.matches || !('IntersectionObserver' in window)) {
-    sections.forEach(section => section.classList.remove('awaiting'));
+    revealItems.forEach(item => item.classList.remove('awaiting'));
     return;
   }
-  revealObserver?.disconnect();
   revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -50,16 +70,106 @@ function revealSections() {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08 });
-  sections.forEach(section => {
-    section.classList.add('awaiting');
-    revealObserver.observe(section);
+  }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+  revealItems.forEach(item => {
+    item.classList.add('awaiting');
+    revealObserver.observe(item);
   });
 }
+
+function layoutTop(element) {
+  let top = 0;
+  for (let current = element; current; current = current.offsetParent) top += current.offsetTop;
+  return top;
+}
+
+function measureMotion() {
+  const mobileScale = window.innerWidth <= 760 ? 0.55 : 1;
+  parallaxItems = [...document.querySelectorAll('[data-parallax]')].map(element => ({
+    element, top: layoutTop(element), height: element.offsetHeight,
+    distance: Number(element.dataset.parallax) * mobileScale
+  }));
+  requestMotion();
+}
+
+function renderMotion(timestamp) {
+  motionFrame = 0;
+  if (!document.documentElement.classList.contains('is-open') || document.hidden) return;
+  const scroll = Math.max(0, window.scrollY);
+  const elapsed = motionTime ? Math.min(timestamp - motionTime, 64) : 16;
+  motionTime = timestamp;
+  const difference = scroll - motionScroll;
+  motionScroll = reducedMotion.matches ? scroll : motionScroll + difference * (1 - Math.exp(-elapsed / 85));
+  const height = window.innerHeight;
+  const extent = Math.max(1, document.documentElement.scrollHeight - height);
+  document.documentElement.style.setProperty('--journey-progress', String(Math.min(1, scroll / extent)));
+  if (!reducedMotion.matches) {
+    parallaxItems.forEach(item => {
+      const relativeTop = item.top - motionScroll;
+      if (relativeTop > height + 150 || relativeTop + item.height < -150) return;
+      const progress = Math.max(-0.65, Math.min(0.65, (height / 2 - relativeTop - item.height / 2) / (height + item.height)));
+      item.element.style.setProperty('--drift-y', `${(progress * item.distance).toFixed(2)}px`);
+    });
+  }
+  if (!reducedMotion.matches && Math.abs(difference) > 0.25) requestMotion();
+}
+
+function requestMotion() {
+  if (!motionFrame && document.documentElement.classList.contains('is-open') && !document.hidden) {
+    motionFrame = requestAnimationFrame(renderMotion);
+  }
+}
+
+function pauseMotion() {
+  cancelAnimationFrame(motionFrame);
+  motionFrame = 0;
+  motionTime = 0;
+}
+
+function finishOpening() {
+  if (!opening || !screen.classList.contains('departing')) return;
+  clearTimeout(departureTimer);
+  screen.hidden = true;
+}
+
+screen.addEventListener('transitionend', event => {
+  if (event.target === screen && event.propertyName === 'opacity') finishOpening();
+});
+window.addEventListener('scroll', requestMotion, { passive: true });
+window.addEventListener('resize', measureMotion, { passive: true });
+invitation.addEventListener('focusin', event => {
+  event.target.closest('.reveal-item')?.classList.remove('awaiting');
+});
+if ('IntersectionObserver' in window) {
+  sceneObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    entry.target.classList.toggle('in-view', entry.isIntersecting);
+  }));
+  document.querySelectorAll('.hero,.memory-section').forEach(scene => sceneObserver.observe(scene));
+}
+if ('ResizeObserver' in window) new ResizeObserver(measureMotion).observe(invitation);
+document.fonts?.ready.then(measureMotion);
+reducedMotion.addEventListener('change', () => {
+  pauseMotion();
+  if (reducedMotion.matches) {
+    revealObserver?.disconnect();
+    revealItems.forEach(item => item.classList.remove('awaiting'));
+    parallaxItems.forEach(item => item.element.style.removeProperty('--drift-y'));
+    document.getElementById('petals').replaceChildren();
+    if (opening && !screen.hidden) {
+      clearTimeout(openingTimer);
+      revealInvitation();
+      finishOpening();
+    }
+  }
+  motionScroll = window.scrollY;
+  measureMotion();
+});
 
 function scatterPetals() {
   if (reducedMotion.matches) return;
   const container = document.getElementById('petals');
+  clearTimeout(petalTimer);
+  container.replaceChildren();
   for (let index = 0; index < 22; index++) {
     const petal = document.createElement('span');
     petal.className = 'petal';
@@ -68,7 +178,24 @@ function scatterPetals() {
     petal.style.animationDuration = `${3 + Math.random() * 1.5}s`;
     container.append(petal);
   }
-  setTimeout(() => container.replaceChildren(), 6000);
+  petalTimer = setTimeout(() => container.replaceChildren(), 6000);
+}
+
+function revealInvitation() {
+  revealSections();
+  document.documentElement.classList.add('is-open');
+  invitation.inert = false;
+  document.body.classList.remove('locked');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  motionScroll = 0;
+  motionTime = 0;
+  measureMotion();
+  screen.classList.add('departing');
+  document.getElementById('couple-names').focus({ preventScroll: true });
+  scatterPetals();
+  // transitionend handles the handoff; the timer also covers interrupted transitions.
+  if (reducedMotion.matches) finishOpening();
+  else departureTimer = setTimeout(finishOpening, 1250);
 }
 
 function openInvitation() {
@@ -76,22 +203,17 @@ function openInvitation() {
   opening = true;
   openButton.disabled = true;
   screen.classList.add('opening');
-  setTimeout(() => {
-    document.documentElement.classList.add('is-open');
-    invitation.inert = false;
-    document.body.classList.remove('locked');
-    screen.classList.add('departing');
-    revealSections();
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    document.getElementById('couple-names').focus({ preventScroll: true });
-    scatterPetals();
-    setTimeout(() => { screen.hidden = true; }, reducedMotion.matches ? 0 : 700);
-  }, reducedMotion.matches ? 0 : 1150);
+  openingTimer = setTimeout(revealInvitation, reducedMotion.matches ? 0 : 1100);
 }
 
 openButton.addEventListener('click', openInvitation);
 document.getElementById('replay-envelope').addEventListener('click', () => {
   music.pause();
+  clearTimeout(openingTimer);
+  clearTimeout(departureTimer);
+  clearTimeout(petalTimer);
+  pauseMotion();
+  document.getElementById('petals').replaceChildren();
   screen.hidden = false;
   screen.classList.remove('opening', 'departing');
   document.documentElement.classList.remove('is-open');
@@ -126,8 +248,15 @@ function updateCountdown(now = Date.now()) {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden) music.pause();
-  else updateCountdown();
+  document.documentElement.classList.toggle('motion-paused', document.hidden);
+  if (document.hidden) {
+    music.pause();
+    pauseMotion();
+  } else {
+    updateCountdown();
+    motionScroll = window.scrollY;
+    measureMotion();
+  }
 });
 
 function escapeCalendar(value) {
