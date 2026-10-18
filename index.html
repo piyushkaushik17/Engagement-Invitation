@@ -3,25 +3,29 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <meta name="theme-color" content="#f7f4eb"/>
+  <meta name="theme-color" content="#f7e9f1"/>
   <meta name="description" content="Together with our families, join us for the engagement of Piyush Kaushik and Samridhi Sharma. 28 November 2026 · The Cove, Panchkula."/>
   <meta property="og:title" content="Piyush & Samridhi | A beautiful beginning"/>
   <meta property="og:description" content="You're invited! 28 November 2026 · The Cove, Sector 5, Panchkula."/>
   <meta property="og:type" content="website"/>
   <title>Piyush &amp; Samridhi · You're invited</title>
   <link rel="icon" type="image/svg+xml" href="assets/monogram.svg"/>
-  <link rel="stylesheet" href="styles.css"/>
-  <script>document.documentElement.classList.add('js');</script>
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="experience.css?v=mobile-5"/>
+  <link rel="stylesheet" href="mobile.css?v=mobile-5"/>
+  <script>document.documentElement.classList.add('js');document.documentElement.dataset.motion='on';</script>
+  <script src="experience.js?v=mobile-5" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#celebration">Skip to ceremony details</a>
+  <a class="skip-link" href="#celebration" data-chapter="2">Skip to ceremony details</a>
 
   <section class="envelope-screen" id="envelope-screen" aria-labelledby="envelope-title">
     <div class="envelope-orbit orbit-one" aria-hidden="true"></div>
     <div class="envelope-orbit orbit-two" aria-hidden="true"></div>
-    <p class="eyebrow">A little love, sealed just for you</p>
-    <h1 id="envelope-title">Something beautiful<br/>is about to begin.</h1>
+    <img class="envelope-bouquet bouquet-left" src="assets/blossom-spray.svg" alt="" width="260" height="640"/>
+    <img class="envelope-bouquet bouquet-right" src="assets/blossom-spray.svg" alt="" width="260" height="640"/>
+    <div class="envelope-petals" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="eyebrow">A letter. A promise. A new beginning.</p>
+    <h1 id="envelope-title">A beautiful beginning,<br/><em>wrapped in love.</em></h1>
     <p class="guest-line" id="guest-line">For our dearest family &amp; friends</p>
     <button class="envelope" id="open-envelope" aria-label="Open Piyush and Samridhi's engagement invitation">
       <span class="envelope-paper" aria-hidden="true"><span class="paper-monogram">P <i>&amp;</i> S</span><span>YOU'RE INVITED</span></span>
@@ -31,112 +35,134 @@
       <span class="wax-seal" aria-hidden="true">P<span>&amp;</span>S</span>
     </button>
     <p class="open-hint"><span aria-hidden="true">✧</span> Tap the seal to open <span aria-hidden="true">✧</span></p>
+    <p class="music-note">A little music awaits inside.</p>
     <p class="envelope-date">PIYUSH &amp; SAMRIDHI <span>·</span> 28.11.2026</p>
   </section>
 
   <main class="invitation" id="invitation">
-    <div class="reading-progress" aria-hidden="true"></div>
-    <div class="ambient-motes" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-    <header class="site-header">
-      <a class="wordmark" href="#home" aria-label="Piyush and Samridhi, back to top">P<span>&amp;</span>S</a>
-      <a class="header-date" href="#celebration">28 NOVEMBER 2026</a>
-      <button class="sound-button icon-button" id="sound-button" aria-label="Play background music" aria-pressed="false" title="Play background music">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13M9 8l11-2"/><ellipse cx="6" cy="18" rx="3" ry="2.5"/><ellipse cx="17" cy="16" rx="3" ry="2.5"/></svg>
-        <span id="sound-label">Music off</span>
-      </button>
-    </header>
-
-    <section class="hero" id="home" aria-labelledby="couple-names">
-      <div class="hero-topline"><span></span><p class="eyebrow">Two hearts. One beautiful beginning.</p><span></span></div>
-      <div class="hero-arch" aria-hidden="true"></div>
-      <img class="botanical botanical-left" data-parallax="-65" src="assets/branch.svg" alt="" width="240" height="600"/>
-      <img class="botanical botanical-right" data-parallax="-45" src="assets/branch.svg" alt="" width="240" height="600"/>
-      <div class="hero-content">
-        <p class="hero-invitation">Together with our families,<br/>we invite you to celebrate our engagement</p>
-        <h1 class="couple-names" id="couple-names" tabindex="-1"><span>Piyush</span><i>&amp;</i><span>Samridhi</span></h1>
-        <p class="hero-note">A promise of forever, a moment to cherish.</p>
-        <div class="hero-date"><span>SATURDAY</span><strong>28 <i>November</i> 2026</strong><span>THE COVE · PANCHKULA</span></div>
-        <a class="text-link hero-link" href="#celebration">The celebration <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-garden" data-parallax="75" aria-hidden="true"></div>
-      <span class="hero-corner corner-left" aria-hidden="true">EST. IN LOVE</span>
-      <span class="hero-corner corner-right" aria-hidden="true">CHAPTER ONE · FOREVER</span>
-    </section>
-
-    <section class="intro section-pad reveal" aria-labelledby="intro-title">
-      <div class="small-flower" aria-hidden="true">❧</div>
-      <p class="eyebrow">With full hearts &amp; happy families</p>
-      <h2 id="intro-title">Some moments are sweeter<br/>when shared with you.</h2>
-      <p class="body-copy">As we take our first step towards forever, we would love to have you by our side. Join us for a day of love, laughter, and the joy of two families becoming one.</p>
-      <div class="families">
-        <div><h3>Piyush Kaushik</h3><p>Son of<br/><strong>Satish Kaushik &amp; Urmila Kaushik</strong></p></div>
-        <span class="family-join" aria-hidden="true">&amp;</span>
-        <div><h3>Samridhi Sharma</h3><p>Daughter of<br/><strong>Rajneesh Sharma &amp; Poonam Sharma</strong></p></div>
-      </div>
-    </section>
-
-    <section class="celebration section-pad" id="celebration" aria-labelledby="celebration-title">
-      <div class="celebration-heading reveal">
-        <p class="eyebrow">Save a little space in your calendar</p>
-        <h2 id="celebration-title">A day to remember.</h2>
-        <p>We can't wait to celebrate with you.</p>
-      </div>
-      <div class="detail-grid">
-        <article class="date-card reveal">
-          <p class="eyebrow">The engagement</p>
-          <div class="date-art"><span>NOVEMBER</span><strong>28</strong><span>SATURDAY · 2026</span></div>
-          <div class="fine-rule"></div>
-          <p class="card-note">One special day.<br/>A lifetime of togetherness.</p>
-          <button class="button button-outline" data-calendar><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4m8-4v4M4 11h16m-8 3v4m-2-2h4"/></svg> Add to calendar</button>
-          <small>Ceremony time to be shared by the families.</small>
-        </article>
-        <article class="venue-card reveal">
-          <div class="venue-illustration" data-parallax="35" role="img" aria-label="Illustrated garden pavilion beside a lotus pond"></div>
-          <div class="venue-content">
-            <p class="eyebrow">Meet us at</p>
-            <h3>The Cove</h3>
-            <p>Sector 5, Panchkula<br/>Haryana, India</p>
-            <a class="button button-primary" href="https://maps.app.goo.gl/BYGhpzSYVJ5wRxBEA" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-7 18-4-7-7-4 18-7Z"/><path d="m10 14 5-5"/></svg> Get directions <span aria-hidden="true">↗</span></a>
+    <div class="story" id="story">
+      <div class="story-scroll" id="story-scroll" tabindex="0" role="region" aria-label="Engagement invitation. Swipe up for the next chapter, or use the chapter buttons.">
+      <div class="story-track">
+      <div class="story-stage" id="story-stage">
+        <div class="world" aria-hidden="true">
+          <div class="world-glow"></div>
+          <div class="world-halo halo-one"></div><div class="world-halo halo-two"></div>
+          <div class="world-garden"></div>
+          <img class="world-branch branch-left" src="assets/blossom-spray.svg" alt="" width="260" height="640"/>
+          <img class="world-branch branch-right" src="assets/blossom-spray.svg" alt="" width="260" height="640"/>
+          <div class="butterflies">
+            <svg class="butterfly butterfly-one" viewBox="0 0 80 60"><g class="wing wing-left"><path d="M40 29C9-12-9 9 7 28c-14 14 8 34 33 4" fill="#c79ab8"/><path d="M36 28 12 12m25 20L15 42" stroke="#fff9fc" stroke-width="1.2"/></g><g class="wing wing-right"><path d="M40 29C71-12 89 9 73 28c14 14-8 34-33 4" fill="#93b7d4"/><path d="m44 28 24-16M43 32l22 10" stroke="#fff9fc" stroke-width="1.2"/></g><path d="M40 21v20m0-18-6-6m6 6 6-6" stroke="#86728e" stroke-width="2" fill="none"/></svg>
+            <svg class="butterfly butterfly-two" viewBox="0 0 80 60"><g class="wing wing-left"><path d="M40 29C9-12-9 9 7 28c-14 14 8 34 33 4" fill="#b1cbe0"/><path d="M36 28 12 12m25 20L15 42" stroke="#fff9fc" stroke-width="1.2"/></g><g class="wing wing-right"><path d="M40 29C71-12 89 9 73 28c14 14-8 34-33 4" fill="#d6aec8"/><path d="m44 28 24-16M43 32l22 10" stroke="#fff9fc" stroke-width="1.2"/></g><path d="M40 21v20m0-18-6-6m6 6 6-6" stroke="#86728e" stroke-width="2" fill="none"/></svg>
           </div>
-        </article>
-      </div>
-      <div class="countdown-section reveal" id="countdown-section">
-        <p class="eyebrow" id="countdown-caption">Counting down to our beautiful beginning</p>
-        <div class="countdown" id="countdown" role="timer" aria-label="Countdown to 28 November 2026 in India">
-          <div><strong id="days">00</strong><span>DAYS</span></div><i aria-hidden="true">:</i>
-          <div><strong id="hours">00</strong><span>HOURS</span></div><i aria-hidden="true">:</i>
-          <div><strong id="minutes">00</strong><span>MINUTES</span></div><i aria-hidden="true">:</i>
-          <div><strong id="seconds">00</strong><span>SECONDS</span></div>
+          <div class="floating-petals"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
         </div>
-        <p class="countdown-note">Until our engagement day · India Standard Time</p>
-      </div>
-    </section>
+        <header class="site-header">
+          <a class="wordmark" href="#home" data-chapter="0" aria-label="Back to the beginning">P<i>&amp;</i>S</a>
+          <span class="header-date">28 · 11 · 2026</span>
+          <button class="header-details" data-chapter="2">When &amp; where <span aria-hidden="true">↗</span></button>
+        </header>
 
-    <section class="memory-section section-pad reveal" aria-labelledby="memory-title">
-      <div class="memory-frame">
-        <span class="eyebrow">A little glimpse of our happiness</span>
-        <h2 id="memory-title">The invitation, in motion.</h2>
-        <p>A note from our hearts to yours.</p>
-        <button class="film-button" id="watch-film"><span class="play-icon" aria-hidden="true">▶</span> Watch our invitation <span class="film-duration">0:26</span></button>
-        <noscript><p><a href="assets/invitation.mp4">Watch the original invitation video</a></p></noscript>
-      </div>
-    </section>
+        <div class="scene-stack">
+          <section class="scene is-active" id="home" data-scene aria-labelledby="couple-names">
+            <div class="scene-content couple-content">
+              <p class="eyebrow scene-kicker">01 / The beginning of forever</p>
+              <p class="intro-line">Together with our families, we invite you to our engagement</p>
+              <div class="interlocking-rings" aria-hidden="true"><span></span><span></span><i>✦</i></div>
+              <h1 class="couple-names" id="couple-names" tabindex="-1"><span>Piyush</span><i>&amp;</i><span>Samridhi</span></h1>
+              <p class="script-line">A promise of forever.</p>
+              <p class="date-line"><span>Saturday, 28 November 2026</span><span>Panchkula</span></p>
+              <button class="continue-button" data-chapter="1">Let the story unfold <span aria-hidden="true">↓</span></button>
+            </div>
+          </section>
 
-    <footer class="site-footer section-pad reveal">
-      <p class="eyebrow">Your presence is our greatest gift</p>
-      <h2>Come for the celebration.<br/>Stay for the memories.</h2>
-      <p>With love &amp; blessings,<br/><strong>The Kaushik &amp; Sharma families</strong></p>
-      <button class="text-link share-button" id="share-invitation">Share the invitation <span aria-hidden="true">↗</span></button>
-      <div class="footer-signature">P <i>&amp;</i> S</div>
-      <p class="hashtag">#PiyushSamridhiForever</p>
-      <p class="footer-date">28 NOVEMBER 2026 · PANCHKULA</p>
-      <button class="replay-button" id="replay-envelope">Seal it with love · Replay envelope</button>
-    </footer>
-    <nav class="mobile-actions" aria-label="Invitation quick actions">
-      <button data-calendar><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4m8-4v4M4 11h16"/></svg> Save the date</button>
-      <a href="https://maps.app.goo.gl/BYGhpzSYVJ5wRxBEA" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 3-7 18-4-7-7-4 18-7Z"/><path d="m10 14 5-5"/></svg> Directions <span aria-hidden="true">↗</span></a>
-    </nav>
+          <section class="scene" id="families" data-scene aria-labelledby="families-title">
+            <div class="scene-content families-content">
+              <p class="eyebrow scene-kicker">02 / With love &amp; blessings</p>
+              <h2 id="families-title" tabindex="-1">Two families.<br/><em>One forever.</em></h2>
+              <p class="scene-description">Some moments are sweeter when shared with you.</p>
+              <div class="family-pair">
+                <div><h3>Piyush Kaushik</h3><p>Son of</p><strong>Satish Kaushik &amp; Urmila Kaushik</strong></div>
+                <span class="family-amp" aria-hidden="true">&amp;</span>
+                <div><h3>Samridhi Sharma</h3><p>Daughter of</p><strong>Rajneesh Sharma &amp; Poonam Sharma</strong></div>
+              </div>
+              <button class="continue-button" data-chapter="2">A date with destiny <span aria-hidden="true">↓</span></button>
+            </div>
+          </section>
+
+          <section class="scene" id="celebration" data-scene aria-labelledby="celebration-title">
+            <div class="scene-content celebration-content">
+              <p class="eyebrow scene-kicker">03 / You're a part of our story</p>
+              <h2 id="celebration-title" tabindex="-1">Meet us at<br/><em>our beginning.</em></h2>
+              <div class="occasion-details">
+                <div class="date-emblem"><span>NOV</span><strong>28</strong><span>SATURDAY · 2026</span></div>
+                <div class="venue-details"><p class="eyebrow">The engagement</p><h3>The Cove</h3><p>Sector 5, Panchkula<br/>Haryana, India</p></div>
+              </div>
+              <div class="occasion-actions">
+                <a class="button button-gold" href="https://maps.app.goo.gl/BYGhpzSYVJ5wRxBEA" target="_blank" rel="noopener noreferrer">Find the venue <span aria-hidden="true">↗</span></a>
+                <button class="button button-outline" data-calendar aria-haspopup="dialog" aria-controls="calendar-dialog">Add to calendar <span aria-hidden="true">＋</span></button>
+              </div>
+              <p class="time-note">Ceremony time will be shared by the families.</p>
+              <div class="countdown-section" id="countdown-section">
+                <p id="countdown-caption">Until our engagement day</p>
+                <div class="countdown" id="countdown" role="timer" aria-label="Countdown to 28 November 2026 in India">
+                  <div><strong id="days">00</strong><span>DAYS</span></div><i aria-hidden="true">:</i>
+                  <div><strong id="hours">00</strong><span>HOURS</span></div><i aria-hidden="true">:</i>
+                  <div><strong id="minutes">00</strong><span>MINUTES</span></div><i aria-hidden="true">:</i>
+                  <div><strong id="seconds">00</strong><span>SECONDS</span></div>
+                </div>
+                <span class="timezone">INDIA STANDARD TIME</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="scene" id="with-love" data-scene aria-labelledby="closing-title">
+            <div class="scene-content closing-content">
+              <p class="eyebrow scene-kicker">04 / The best part is having you there</p>
+              <button class="love-mark" id="shower-petals" aria-label="Celebrate with a shower of petals" title="Celebrate with a shower of petals">♡<span>Tap for a little magic</span></button>
+              <h2 id="closing-title" tabindex="-1">A little celebration.<br/><em>A lifetime of love.</em></h2>
+              <p class="scene-description">Your presence &amp; blessings will make this day truly ours.</p>
+              <button class="film-button" id="watch-film"><span class="play-icon" aria-hidden="true">▶</span><span>Watch our invitation<small>A NOTE FROM OUR HEARTS · 0:26</small></span></button>
+              <noscript><p><a href="assets/invitation.mp4">Watch the invitation video</a></p></noscript>
+              <p class="family-signoff">With love, the Kaushik &amp; Sharma families</p>
+              <p class="hashtag">#PiyushSamridhiForever</p>
+              <div class="closing-actions"><button class="text-button" id="share-invitation">Share the love ↗</button><button class="text-button" id="replay-envelope">Open the envelope again ↺</button></div>
+            </div>
+          </section>
+        </div>
+
+        <nav class="chapter-navigation" aria-label="Invitation chapters">
+          <div class="chapter-meta"><span id="chapter-number">01</span><span class="chapter-rule" aria-hidden="true"></span><span id="chapter-label">The beginning</span></div>
+          <div class="chapter-dots">
+            <button data-chapter="0" aria-label="Chapter 1: The beginning" aria-current="step"><span></span></button>
+            <button data-chapter="1" aria-label="Chapter 2: Our families"><span></span></button>
+            <button data-chapter="2" aria-label="Chapter 3: The celebration"><span></span></button>
+            <button data-chapter="3" aria-label="Chapter 4: With love"><span></span></button>
+          </div>
+          <button class="next-chapter" id="next-chapter" aria-label="Next chapter"><span id="next-label">Swipe up to unfold</span><span class="scroll-arrow" aria-hidden="true">↓</span></button>
+        </nav>
+        <div class="reading-progress" aria-hidden="true"></div>
+      </div>
+      <span class="story-stop" style="--stop:0" aria-hidden="true"></span>
+      <span class="story-stop" style="--stop:1" aria-hidden="true"></span>
+      <span class="story-stop" style="--stop:2" aria-hidden="true"></span>
+      <span class="story-stop" style="--stop:3" aria-hidden="true"></span>
+      </div>
+      </div>
+    </div>
   </main>
+
+  <dialog class="calendar-sheet" id="calendar-dialog" aria-labelledby="calendar-title" aria-describedby="calendar-help">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="calendar-heading"><div><p class="eyebrow">Keep a little space for us</p><h2 id="calendar-title">Save our date.</h2></div><button class="icon-button" id="close-calendar" aria-label="Close calendar options">×</button></div>
+    <p class="calendar-summary">Piyush &amp; Samridhi<br/><strong>28 November 2026 · The Cove, Panchkula</strong></p>
+    <div class="calendar-options">
+      <a id="google-calendar" target="_blank" rel="noopener noreferrer"><span class="calendar-symbol google-symbol" aria-hidden="true">28</span><span>Google Calendar<small>Open a prefilled event, then tap Save</small></span><span aria-hidden="true">↗</span></a>
+      <a id="outlook-calendar" target="_blank" rel="noopener noreferrer"><span class="calendar-symbol outlook-symbol" aria-hidden="true">O</span><span>Outlook<small>Open a prefilled event, then tap Save</small></span><span aria-hidden="true">↗</span></a>
+      <a href="assets/engagement.ics" type="text/calendar"><span class="calendar-symbol apple-symbol" aria-hidden="true">＋</span><span>Apple Calendar / iPhone<small>Open the calendar file, then confirm Add</small></span><span aria-hidden="true">↗</span></a>
+    </div>
+    <p id="calendar-help">Choose your calendar to confirm the event. Apple Calendar requires a calendar file; some browsers download it first. The date is saved as an all-day event until the families share the ceremony time.</p>
+    <button class="text-button calendar-download" id="download-calendar">Download a calendar file instead</button>
+  </dialog>
 
   <dialog class="film-dialog" id="film-dialog" aria-labelledby="film-title">
     <div class="film-dialog-header"><h2 id="film-title">Our engagement invitation</h2><button class="icon-button close-film" id="close-film" aria-label="Close invitation video">×</button></div>
@@ -145,6 +171,6 @@
   </dialog>
   <audio id="background-music" loop preload="none" src="assets/music.m4a"></audio>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <div class="petals" id="petals" aria-hidden="true"></div>
+  <div class="petal-shower" id="petal-shower" aria-hidden="true"></div>
 </body>
 </html>
